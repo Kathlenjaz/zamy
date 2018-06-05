@@ -28,6 +28,11 @@ export class FirebaseService {
     this.angularFirestore.collection(collectionName).doc(id).set(JSON.parse(jsonString));
   }
 
+  updateDocument(collectionName: string, object: Object, id: string) {
+    const jsonString = JSON.stringify(object);
+    this.angularFirestore.collection(collectionName).doc(id).update(JSON.parse(jsonString));
+  }
+
   addDocumentNoId(collectionName: string, object: Object) {
     const jsonString = JSON.stringify(object);
     this.angularFirestore.collection(collectionName).add(JSON.parse(jsonString));
@@ -37,11 +42,12 @@ export class FirebaseService {
     return this.angularFirestore.doc(collectionName + '/' + id).valueChanges();
   }
 
-  getCollectionWhere(collectionName: string, field: string, operator: any, value: any): Observable<any> {
+  getDocumentWhere(collectionName: string, field: string, operator: any, value: any): Observable<any> {
     return this.angularFirestore.collection(collectionName, ref => ref.where(field, operator, value)).snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as any;
         const id = a.payload.doc.id;
+        console.log('found id: ' + id);
         return { id, ...data };
       }))
     );

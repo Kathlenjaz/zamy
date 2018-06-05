@@ -6,6 +6,7 @@ import { EventRegistrationComponent } from './events/event-registration/event-re
 import { EventListComponent } from './events/event-list/event-list.component';
 import { EventDetailComponent } from './events/event-detail/event-detail.component';
 import { AppRoutingModule } from './/app-routing.module';
+import { FormsModule } from '@angular/forms';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
@@ -13,6 +14,10 @@ import { FirebaseService } from './services/firebase.service';
 import { UserService } from './services/user.service';
 import { EventService } from './services/event.service';
 import { AttendanceListComponent } from './attendance/attendance-list/attendance-list.component';
+import { AuthService } from './services/auth.service';
+import { LoginComponent } from './login/login.component';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AttendanceService } from './services/attendance.service';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCOu0Lwpp5d_eRnIyJHcVypT2E-UD9HF8A',
@@ -29,18 +34,23 @@ const firebaseConfig = {
     EventRegistrationComponent,
     EventListComponent,
     EventDetailComponent,
-    AttendanceListComponent
+    AttendanceListComponent,
+    LoginComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
     AppRoutingModule
   ],
   providers: [
+    AuthService,
+    AngularFireAuth,
     FirebaseService,
     UserService,
-    EventService],
+    EventService,
+    AttendanceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

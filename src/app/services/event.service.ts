@@ -10,14 +10,14 @@ export class EventService {
   constructor(private firebaseService: FirebaseService) { }
 
   getAll(): Observable<Event[]> {
-    return this.firebaseService.getCollection(CollectionName.event);
+    return this.firebaseService.getCollection(CollectionName.events);
   }
 
   save(event: Event): void {
-    this.firebaseService.addDocumentNoId(CollectionName.event, event);
+    this.firebaseService.addDocumentNoId(CollectionName.events, event);
   }
 
   getEventById(id: string): Observable<Event> {
-    return this.firebaseService.getDocumentById(CollectionName.event, id);
+    return this.firebaseService.getDocumentById(CollectionName.events, id);
   }
 }
