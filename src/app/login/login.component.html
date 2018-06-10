@@ -29,13 +29,13 @@
         <label for="exampleInputPassword1">Contraseña</label>
         <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Ingresar contraseña" [(ngModel)]="password">
       </div>
-      
+
       <div align="center">
           <a href="#" class="forgot-password">
               <p class="text-muted"><small> ¿Olvidaste tu contraseña? </small></p>
           </a>
       </div>  
-          <button type="button" class="btn btn-warning btn-lg btn-block" (click)="login(username,password)">
+          <button type="button" class="btn btn-warning btn-lg btn-block" (click)="login(username,password)" data-toggle="modal" data-target="#invalidCredential">
             <div align="center">
             Login
             </div>
@@ -48,4 +48,24 @@
   </div><!-- /card-container -->
 
 </div><!-- /container -->
+</div>
+
+<!--MODAL-->
+<div class="modal" id="invalidCredential">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">ERROR</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Usuario o Contraseña incorrectos</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
 </div>
