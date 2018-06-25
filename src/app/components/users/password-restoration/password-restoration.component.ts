@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class PasswordRestorationComponent implements OnInit {
   username: string;
+  warningMessage: string;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -20,6 +21,7 @@ export class PasswordRestorationComponent implements OnInit {
     if (this.username !== undefined) {
       this.authService.resetPassword(this.username + AppSettings.emailDomain).catch(err => console.log('error: ' + err));
     } else {
+      this.warningMessage = 'Ingrese username';
       console.log('no username');
     }
   }
